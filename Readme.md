@@ -1,0 +1,1 @@
+# Translator Android Local Api
