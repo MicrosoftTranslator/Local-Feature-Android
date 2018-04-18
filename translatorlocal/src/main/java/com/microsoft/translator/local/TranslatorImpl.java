@@ -253,6 +253,9 @@ class TranslatorImpl {
         if (versionCode < 255) {
             return Translator.ERROR_APP_VERSION_NOT_SUPPORTED;
         }
+        if ((versionCode == 255) && (versionName.endsWith("3fc6f1a21"))) {
+            return Translator.ERROR_APP_VERSION_NOT_SUPPORTED;
+        }
 
         // ipu versions without translation service
         if ((versionCode >= 260) && (versionCode < 274)) {
