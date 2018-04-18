@@ -26,13 +26,13 @@ There are only a few methods:
 
 The `translatorlocal` library included in this repository contains the necessary classes to use the Local Feature. There is also a sample app in the `app` folder.
 
-`com.microsoft.translator.local.Translator` is the main class for interfacing with the API.
+`com.microsoft.translator.local.Translator` is the main class for interfacing with the feature.
 
 1. Sign up for your API key at the link above in the **Get Started** section
 
-2. Check that the Translator app is installed by calling `init()` it should return `TranslatorApi.ERROR_NONE` if the app is installed.
+2. Check that the Translator app is installed by calling `init()` it should return `Translator.ERROR_NONE` if a version of the app that supports the feature is installed.
 
-3. Start the service by calling `start()` and check for `TranslatorApi.ERROR_NONE`.  If another value is returned, the Translator app may not have been installed on the user device, or may not support the Local API.
+3. Start the service by calling `start()` and check for `Translator.ERROR_NONE`.  If another value is returned, the Translator app may not have been installed on the user device, or may not support the Local Feature.
 
 4. Check that the service is connected with `isConnected()`
 
