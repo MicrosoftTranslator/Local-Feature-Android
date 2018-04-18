@@ -1,4 +1,4 @@
-# Local feature for the Translator app on Android
+# Local feature for the Translator app on Android [Preview]
 
 ## Get Started
 
@@ -11,6 +11,8 @@ How to get started with the Microsoft Translator local feature:
 ## Local Feature
 
 **Translator Local Feature** works on the most recent version of the [Microsoft Translator Android App](https://play.google.com/store/apps/details?id=com.microsoft.translator).  It allows developers to add translation capabilities to their apps, utilizing the Translator app already installed on a user device.  If the user has language packs downloaded, the translations will also be done offline.
+
+Note: The Local feature is in Preview mode. Please do not use it for any production purposes.
 
 ## API Usage
 
