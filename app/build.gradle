@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.1"
+    defaultConfig {
+        applicationId "com.microsoft.translator.sample.apiexample"
+        minSdkVersion 18
+        targetSdkVersion 26
+        versionCode 10
+        versionName "1.1." + versionCode
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile project(':translatorlocal')
+    compile "com.android.support:support-core-utils:27.0.1"
+    compile 'com.android.support:appcompat-v7:27.0.1'
+    compile 'com.android.support:design:27.0.1'
+    testCompile 'junit:junit:4.12'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestCompile "com.android.support:support-annotations:27.0.1"
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    androidTestCompile 'com.android.support.test:rules:1.0.1'
+}
