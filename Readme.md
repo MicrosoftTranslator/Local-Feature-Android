@@ -1,12 +1,12 @@
-# Translator Android Local API
+# Local feature for the Microsoft Translator app on Android
 
 ## Get Started
 
 How to get started with the Microsoft Translator local feature:
 
 1. Sign up for a free subscription to the Microsoft Translator text API. [Learn more](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup)
-1. Use the documentation below and the sample app to learn how to add online and offline translation to your Android app.
-1. Start coding!
+2. Use the documentation below and the sample app to learn how to add online and offline translation to your Android app.
+3. Start coding!
 
 ## Translator Android Local API
 
