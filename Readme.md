@@ -1,5 +1,10 @@
 # Local feature for the Translator app on Android [Preview]
 
+## Local Feature
+
+**Translator Local Feature** works on the most recent version of the [Microsoft Translator Android App](https://play.google.com/store/apps/details?id=com.microsoft.translator).  It allows developers to add translation capabilities to their apps, utilizing the Translator app already installed on a user device.  If the user has language packs downloaded, the translations may also be done offline.
+
+Note: The Local feature is in Preview mode. Please do not use it for any production purposes.
 ## Get Started
 
 How to get started with the Microsoft Translator local feature:
@@ -8,15 +13,9 @@ How to get started with the Microsoft Translator local feature:
 2. Use the documentation below and the sample app to learn how to add online and offline translation to your Android app.
 3. Start coding!
 
-## Local Feature
+## Usage
 
-**Translator Local Feature** works on the most recent version of the [Microsoft Translator Android App](https://play.google.com/store/apps/details?id=com.microsoft.translator).  It allows developers to add translation capabilities to their apps, utilizing the Translator app already installed on a user device.  If the user has language packs downloaded, the translations will also be done offline.
-
-Note: The Local feature is in Preview mode. Please do not use it for any production purposes.
-
-## API Usage
-
-The Local feature API is still very simple -- it currently only allows for text translation. 
+The Local Feature is still very simple -- it currently only allows for text translation. 
 
 There are only a few methods:
 
@@ -25,17 +24,21 @@ There are only a few methods:
 - Perform a text translation from language A to language B
 - Initialize offline engines for better performance
 
-The `translatorapi` library included in this repository contains the necessary classes to use the Local API service. There is also a sample app in the `app` folder.
+The `translatorlocal` library included in this repository contains the necessary classes to use the Local Feature. There is also a sample app in the `app` folder.
 
-`com.microsoft.translator.localapi.TranslatorApi` is the main class for interfacing with the API.
+`com.microsoft.translator.local.Translator` is the main class for interfacing with the API.
 
 1. Sign up for your API key at the link above in the **Get Started** section
 
-2. Start the service by calling `start()` and check for TranslatorApi.ERROR_NONE.  If another value is returned, the Translator app may not have been installed on the user device, or may not support the Local API.
+2. Check that the Translator app is installed by calling `init()` it should return `TranslatorApi.ERROR_NONE` if the app is installed.
 
-3. Use `getLanguageList()` to return a list of language codes to translate to and from. These will be passed as arguments to the `translate` method.  These are language codes like `en` for English, and `es` for Spanish.  If the user has the offline language pack downloaded for a certain language, the `isOnDevice` flag will be `true`.
+3. Start the service by calling `start()` and check for `TranslatorApi.ERROR_NONE`.  If another value is returned, the Translator app may not have been installed on the user device, or may not support the Local API.
 
-4. Perform a translation with the `translate()` method. providing your API key, a category (leave blank for now), the language codes for the to and from languages, and a list of Strings to translate.
+4. Check that the service is connected with `isConnected()`
+
+5. Use `getLanguageList` to get a list of languages to translate to and from. The `code` field corresponds to the language codes you will need for `translate`. These are language codes like `en` for English, and `es` for Spanish.  If the user has the offline language pack downloaded for a certain language, the `isOnDevice` flag will be `true`. You can use the `nativeName` to get the language in its native text, or `name` to get the name in the devices current locale. ( A cached list of languages will be used if the user is offline. )
+
+6. Perform a translation with the `translate` method. providing your API key, a category (leave blank for now), the language codes for the to and from languages, and a list of Strings to translate.
 
 The `getLanguageList` and `translate` methods are synchronous and may take some time to perform, so they should be done on a background thread.
 
@@ -43,23 +46,43 @@ The `getLanguageList` and `translate` methods are synchronous and may take some 
 Here is a simple call flow to perform a translation:
 
 ```
-TranslatorApi translatorApi = TranslatorApi.getInstance();
-int result = translatorApi.start(context, null);
+// check if Translator is available
 
-if (result == TranslatorApi.ERROR_NONE) {
-    LanguageListResult languageResult = translatorApi.getLanguageList();
+int result = Translator.init(context);
+if (result != Translator.ERROR_NONE) {
+    // Translator isn't installed or version is unsupported
+    return;
+}
+
+// set your api key
+String API_KEY = "";
+
+// start the service
+Translator.start(context, null);
+
+// you may need to delay before isConnected returns true
+
+if (Translator.isConnected()) {
+    // get the list of available languages
+    LanguageListResult languageResult = Translator.getLanguageList();
+
     if (!languageResult.isError()) {
         ArrayList<String> texts = new ArrayList<>();
         texts.add("Hello World!");
-        TextTranslationResult textResult = translatorApi.translate("BAD_KEY", null, "en", languageResult.getLanguages().get(0).code, texts);
+        
+        // perform a translation
+        TextTranslationResult textResult = Translator.translate(API_KEY, null, "en", languageResult.getLanguages().get(0).code, texts);
+    
         if (!textResult.isError()) {
             System.out.println("Got result: " + textResult.getData().get(0));
+        } else {
+            System.out.println("Got error: " + textResult.errorMessage);
         }
     }
 }
 
 //stop the service when you are finished using it.
-translatorApi.stop();
+Translator.stop();
 ```
 
 ## Sample App
