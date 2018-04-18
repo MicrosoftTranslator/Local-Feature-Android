@@ -5,7 +5,7 @@
 How to get started with the Microsoft Translator local feature:
 
 1. Sign up for a free subscription to the Microsoft Translator text API. [Learn more](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup)
-1. Use the documentation below and the sample app to learn how to add online and offline translation to your Android app
+1. Use the documentation below and the sample app to learn how to add online and offline translation to your Android app.
 1. Start coding!
 
 ## Translator Android Local API
@@ -14,23 +14,28 @@ How to get started with the Microsoft Translator local feature:
 
 ## API Usage
 
-The API is still very simple it only allows for text translation currently. There are only a few methods:
+The API is still very simple: it currently only allows for text translation. 
 
-- start and stop the service
-- get a list of supported Languages
-- perform a text translation from language A to language B
-- initialize offline engines for better performance
+There are only a few methods:
 
-The `translatorapi` library included in this repository contains the necessary classes to use the Local API service. there is also a simple sample app in the `app` folder.
+- Start and stop the service
+- Get a list of supported Languages
+- Perform a text translation from language A to language B
+- Initialize offline engines for better performance
+
+The `translatorapi` library included in this repository contains the necessary classes to use the Local API service. There is also a sample app in the `app` folder.
 
 `com.microsoft.translator.localapi.TranslatorApi` is the main class for interfacing with the API.
 
 1. Sign up for your API key at the link above in the **Get Started** section
-1. Start the service by calling `start()` and check for TranslatorApi.ERROR_NONE.  If another value is returned, the Translator app may not be installed, or may not support the Local API.
-1. Use `getLanguageList()` to get a list of language codes to translate to/from. these will be needed to pass as arguments to the `translate` method.  These are language codes like `en` for English, and `es` for Spanish.  If the user has the offline language pack downloaded, the `isOnDevice` flag will be `true`
-1. Perform a translation with `translate()` method. providing your API key, a category (leave blank for now), to and from language codes, and a list of Strings to translate.
 
-`getLanguageList` and `translate` methods are synchronous and may take some time to perform, so they should be done on a background thread.
+2. Start the service by calling `start()` and check for TranslatorApi.ERROR_NONE.  If another value is returned, the Translator app may not have been installed on the user device, or may not support the Local API.
+
+3. Use `getLanguageList()` to return a list of language codes to translate to and from. These will be passed as arguments to the `translate` method.  These are language codes like `en` for English, and `es` for Spanish.  If the user has the offline language pack downloaded for a certain language, the `isOnDevice` flag will be `true`.
+
+4. Perform a translation with the `translate()` method. providing your API key, a category (leave blank for now), the language codes for the to and from languages, and a list of Strings to translate.
+
+The `getLanguageList` and `translate` methods are synchronous and may take some time to perform, so they should be done on a background thread.
 
 
 Here is a simple call flow to perform a translation:
