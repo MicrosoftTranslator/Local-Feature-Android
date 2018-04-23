@@ -31,7 +31,7 @@ The following methods are available with the local feature:
 - Start and stop the service
 - Get a list of supported Languages
 - Perform a text translation from language A to language B
-- Initialize offline engines for better performance
+- Initialize offline engines (for better performance when offline translations are used more than once)
 
 The `translatorlocal` library included in this repository contains the necessary classes to use the Local Feature. There is also a sample app in the `app` folder.
 
