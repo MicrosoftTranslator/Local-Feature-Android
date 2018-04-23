@@ -94,6 +94,16 @@ if (Translator.isConnected()) {
 Translator.stop();
 ```
 
+## FAQ
+
+**What languages does the local feature suuport?**
+For online translation, the local feature supports all text translation languages supported by the Microsoft Translator. For offline translation, the local feature will support any language that has available downloadable language packs for Android. The user will need to download the language pack prior to translation. [View language lists](https://translator.microsoft.com/help/articles/languages/)
+
+For a complete list of Microsoft Translator language codes, refer to the [Translator Text API documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/languages).
+
+**Does the local feature use neural machine translation (NMT) or statistical machine translation (SMT?**
+The local feature uses NMT as a default. If NMT is not available for a particular language, the feature will use the SMT system. View supported NMT languages in the [Translator Text API documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/languages).
+
 ## Sample App
 
 There is a sample app provided in the `app` folder of this repository to play around with the API.
