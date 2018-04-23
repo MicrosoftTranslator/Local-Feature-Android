@@ -2,22 +2,31 @@
 
 ## Local Feature
 
-**Translator Local Feature** works on the most recent version of the [Microsoft Translator Android App](https://play.google.com/store/apps/details?id=com.microsoft.translator).  It allows developers to add translation capabilities to their apps, utilizing the Translator app already installed on a user device.  If the user has language packs downloaded, the translations may also be done offline.
+**Translator Local Feature** works on the most recent version of the [Microsoft Translator Android App](https://translator.microsoft.com/apps/android/).  It allows developers to add translation capabilities to their apps utilizing the Translator app already installed on a user device.  If the user has language packs downloaded, the translations may also be done offline.
 
 Note: The Local feature is in Preview mode. Please do not use it for any production purposes.
 ## Get Started
 
 How to get started with the Microsoft Translator local feature:
 
-1. Sign up for a free subscription to the Microsoft Translator text API. [Learn more](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup)
+1. Sign up for a subscription to the Microsoft Translator text API. Select the free 2 million character per month tier, or paid tiers for higher volumes. [Learn more](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup). 
 2. Use the documentation below and the sample app to learn how to add online and offline translation to your Android app.
 3. Start coding!
+4. Question? Post them to our [support forum](https://stackoverflow.com/questions/tagged/microsoft-translator)
+
+## Release notes
+
+| Feature    | Status |
+|:----------- |:-------------:|
+|Online usage charged through Azure portal| In development|
+|Offline usage charged through Azure portal| In development|
+|Customization with Category ID| In development|
+
+**April 18, 2017:** Documentation and sample apps added 
 
 ## Usage
 
-The Local Feature is still very simple -- it currently only allows for text translation. 
-
-There are only a few methods:
+The following methods are available with the local feature:
 
 - Start and stop the service
 - Get a list of supported Languages
@@ -36,9 +45,9 @@ The `translatorlocal` library included in this repository contains the necessary
 
 4. Check that the service is connected with `isConnected()`
 
-5. Use `getLanguageList` to get a list of languages to translate to and from. The `code` field corresponds to the language codes you will need for `translate`. These are language codes like `en` for English, and `es` for Spanish.  If the user has the offline language pack downloaded for a certain language, the `isOnDevice` flag will be `true`. You can use the `nativeName` to get the language in its native text, or `name` to get the name in the devices current locale. ( A cached list of languages will be used if the user is offline. )
+5. Use `getLanguageList` to get a list of languages to translate from and to. The `code` field corresponds to the language codes you will need for `translate`. These are language codes like `en` for English, and `es` for Spanish.  If the user has the offline language pack downloaded for a certain language, the `isOnDevice` flag will be `true`. You can use the `nativeName` to get the language in its native text, or `name` to get the name in the devices current locale. ( A cached list of languages will be used if the user is offline. )
 
-6. Perform a translation with the `translate` method. providing your API key, a category (leave blank for now), the language codes for the to and from languages, and a list of Strings to translate.
+6. Perform a translation with the `translate` method. providing your API key, a category (leave blank for now), the language codes for the from and to languages, and a list of Strings to translate.
 
 The `getLanguageList` and `translate` methods are synchronous and may take some time to perform, so they should be done on a background thread.
 
