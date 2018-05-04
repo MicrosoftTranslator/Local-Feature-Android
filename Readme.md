@@ -102,9 +102,9 @@ For online translation, the local feature supports all Microsoft Translator text
 
 For a complete list of Microsoft Translator language codes, refer to the [Translator Text API documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/languages).
 
-**Does the local feature use neural machine translation (NMT) or statistical machine translation (SMT?**
+**Does the local feature use neural machine translation (NMT) or statistical machine translation (SMT?)**
 
-The local feature uses NMT as a default. If NMT is not available for a particular language, the feature will use the SMT system. View supported NMT languages in the [Translator Text API documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/languages).
+The local feature uses NMT by default. If NMT is not available for a particular language, the feature will use the SMT system. View supported NMT languages in the [Translator Text API documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/languages).
 
 ## Sample App
 
