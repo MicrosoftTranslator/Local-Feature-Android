@@ -18,11 +18,17 @@ How to get started with the Microsoft Translator local feature:
 
 | Feature    | Status |
 |:----------- |:-------------:|
-|Online usage charged through Azure portal| In development|
+|Online usage charged through Azure portal| Live|
 |Offline usage charged through Azure portal| In development|
-|Customization with Category ID| In development|
+|Customization with Category ID| Live|
 
-**April 18, 2017:** Documentation and sample apps added 
+**May 25, 2018:** 
+* Online usage will be billed to the provided API key. If an invalid key is provided, an error will occur 
+* Local feature now uses the V3 Translator Text API
+* Customization is available using the category ID when supplied. If an invalid category ID is provided, an error will occur 
+
+**April 18, 2017:** 
+Documentation and sample apps added 
 
 ## Usage
 
